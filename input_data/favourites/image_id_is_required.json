@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "CREATE",
+    "url": "/favourites"
+  },
+  "response": {
+    "body":
+        {
+          "msg": "\"image_id\" is required"
+        }
+  },
+  "headers": {
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "status_code": 400
+}

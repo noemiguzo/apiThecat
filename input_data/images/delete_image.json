@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/images"
+  },
+  "response": {
+    "body":
+        {
+          "msg": "No body Content"
+        }
+  },
+  "headers": {
+    "Content-Type": "text/html"
+  },
+  "status_code": 204
+}

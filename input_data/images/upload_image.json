@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/images/upload"
+  },
+  "response": {
+    "body":
+        {
+            "id": "SoAs2tt7G",
+            "url": "https://cdn2.thecatapi.com/images/SoAs2tt7G.png",
+            "width": 705,
+            "height": 680,
+            "original_filename": "2024-03-23 20_17_39-Window.png",
+            "pending": 0,
+            "approved": 1
+        }
+  },
+  "headers": {
+    "content-type": "application/json; charset=utf-8"
+  },
+  "status_code": 201
+}

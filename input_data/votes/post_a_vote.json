@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/votes"
+  },
+  "response": {
+    "body":
+      {
+          "message": "SUCCESS",
+          "id": 232458547
+      }
+  },
+  "headers": {
+    "content-type": "application/json; charset=utf-8"
+  },
+  "status_code": 201
+}

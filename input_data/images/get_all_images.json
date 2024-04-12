@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/images"
+  },
+  "response": {
+    "body":
+      [
+            {
+        "breeds": [],
+        "id": "SoAs2tt7G",
+        "url": "https://cdn2.thecatapi.com/images/SoAs2tt7G.png",
+        "width": 705,
+        "height": 680,
+        "sub_id": null,
+        "created_at": "2024-04-07T19:21:04.000Z",
+        "original_filename": "2024-03-23 20_17_39-Window.png",
+        "breed_ids": null
+    },
+    {
+        "breeds": [],
+        "id": "KLq8L3n2o",
+        "url": "https://cdn2.thecatapi.com/images/KLq8L3n2o.png",
+        "width": 705,
+        "height": 680,
+        "sub_id": null,
+        "created_at": "2024-03-24T00:23:56.000Z",
+        "original_filename": "2024-03-23 20_17_39-Window.png",
+        "breed_ids": null
+    }
+      ]
+  },
+  "headers": {
+    "x-frame-options": "SAMEORIGIN"
+  },
+  "status_code": 200
+}

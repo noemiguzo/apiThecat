@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/images"
+  },
+  "response": {
+    "body":
+    {
+        "id": "SoAs2tt7G",
+        "url": "https://cdn2.thecatapi.com/images/SoAs2tt7G.png",
+        "width": 705,
+        "height": 680,
+        "sub_id": null
+
+    }
+  },
+  "headers": {
+    "x-frame-options": "SAMEORIGIN"
+  },
+  "status_code": 200
+}

@@ -1,0 +1,32 @@
+{
+  'headers': {
+    'x-dns-prefetch-control': 'off',
+    'x-frame-options': 'SAMEORIGIN',
+    'strict-transport-security': 'max-age=15552000; includeSubDomains',
+    'x-download-options': 'noopen',
+    'x-content-type-options': 'nosniff',
+    'x-xss-protection': '1; mode=block',
+    'vary': 'Origin',
+    'retry-after-seconds': '58.938',
+    'ratelimit-limit': '120',
+    'ratelimit-remaining': '118',
+    'ratelimit-consumed': '2',
+    'ratelimit-reset': '2024-04-07T19:48:04.280Z',
+    'content-type': 'application/json; charset=utf-8',
+    'x-response-time': '2764ms',
+    'X-Cloud-Trace-Context': 'ad39fb6d21e92dd0006552444bd02d73',
+    'Date': 'Sun, 07 Apr 2024 19:47:08 GMT',
+    'Server': 'Google Frontend',
+    'Content-Length': '158'
+  },
+  'body': {
+    'id': '8IOLb1UvI',
+    'url': 'https://cdn2.thecatapi.com/images/8IOLb1UvI.png',
+    'width': 602,
+    'height': 557,
+    'original_filename': 'namenewcat1',
+    'pending': 0,
+    'approved': 1
+  },
+  'status_code': 201
+}

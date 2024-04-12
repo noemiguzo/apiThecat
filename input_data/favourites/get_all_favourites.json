@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/favourites"
+  },
+  "response": {
+    "body":
+      [
+      {
+          "id": 232458547,
+          "user_id": "i8iv3f",
+          "image_id": "F8lwUshaY",
+          "sub_id": null,
+          "created_at": "2024-04-07T22:09:20.000Z",
+          "image": {}
+      },
+      {
+          "id": 232458550,
+          "user_id": "i8iv3f",
+          "image_id": "F8lwUshaY",
+          "sub_id": null,
+          "created_at": "2024-04-07T23:12:46.000Z",
+          "image": {}
+      }
+      ]
+  },
+  "headers": {
+    "content-type": "application/json; charset=utf-8"
+  },
+  "status_code": 200
+}
