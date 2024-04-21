@@ -1,6 +1,6 @@
+"""Class providing validate support"""
 import json
 import logging
-
 from config.config import abs_path
 from utils.logger import get_logger
 
@@ -8,15 +8,14 @@ LOGGER = get_logger(__name__, logging.DEBUG)
 
 
 class ValidateResponse:
-
+    """Class providing validate methods."""
     def validate_response(self, actual_response=None, endpoint=None, file_name=None):
         """
 
         :param actual_response:  REST response
         :param endpoint:         endpoint used i.e projects
         """
-        # read from json file
-        abs_path = 'C:/Users/noemi.guzman/PycharmProjects'
+
         expected_response = self.read_input_data_json(f"{abs_path}/apiThecat/input_data/{endpoint}/{file_name}.json")
         print(expected_response)
         print('actual_response')
@@ -30,6 +29,13 @@ class ValidateResponse:
         self.validate_value(expected_response["response"]["body"], actual_response["body"], "body")
 
     def validate_value(self, expected_value, actual_value, key_compare):
+        """
+        validate full request
+        :param expected_value:
+        :param actual_value:
+        :param key_compare:
+        :return:
+        """
         error_message = f"Expected '{expected_value}' but received '{actual_value}'"
         LOGGER.debug("Expected value '%s': '%s'", key_compare, expected_value)
         LOGGER.debug("Actual value '%s': %s", key_compare, actual_value)
@@ -45,9 +51,17 @@ class ValidateResponse:
 
     @staticmethod
     def read_input_data_json(file_name):
+        """
+        Read file
+        :param file_name:
+        :return:
+        """
         LOGGER.debug("Reading from file: %s", file_name)
-        with open(file_name) as json_file:
-            data = json.load(json_file)
+        try:
+            with open(file_name, encoding="utf-8") as json_file:
+                data = json.load(json_file)
+        except IOError as err:
+            print(f"Error: {err}")
         LOGGER.debug("Content of json file: %s", data)
         json_file.close()
 

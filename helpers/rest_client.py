@@ -1,3 +1,4 @@
+"""Class providing rest client support"""
 import json
 import logging
 
@@ -10,19 +11,18 @@ LOGGER = get_logger(__name__, logging.DEBUG)
 
 
 class RestClient:
-
-    def __init__(self, headers=HEADERS_TODO):
+    """Class rest client methods."""
+    def __init__(self):
         self.session = requests.Session()
-        self.session.headers.update(headers)
+        self.session.headers.update(HEADERS_TODO)
 
     def request(self, method_name, url,  **kwargs):
         """
-
+            method to do a request call
         :param method_name:
         :param url:
         :return:
-        """
-        """
+
         response["status_code"]
         response["headers"]
         response["body"]

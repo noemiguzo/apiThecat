@@ -1,8 +1,10 @@
+"""Class providing image API test """
+import logging
 import pytest
 
 from entities.image import Image
 from utils.logger import get_logger
-import logging
+
 from config.config import URL_CATAPI, IMAGE_FOLDER
 from helpers.rest_client import RestClient
 from helpers.validate_response import ValidateResponse
@@ -11,6 +13,7 @@ LOGGER = get_logger(__name__, logging.DEBUG)
 
 
 class TestImages:
+    """ test image class"""
     @classmethod
     def setup_class(cls):
         """
@@ -30,10 +33,12 @@ class TestImages:
         Test upload image open png file
         """
         LOGGER.info("Test upload images")
-        URL_CAT_API_UPLOAD = f"{URL_CATAPI}/images/upload"
-        test_file = {'file': ('testnamenew', open(f'{IMAGE_FOLDER}cat1noemi.png', "rb"), 'image/png')}
-
-        response = self.rest_client.request("post", URL_CAT_API_UPLOAD, files=test_file)
+        upload_url = f"{self.URL_CAT_API_IMAGES}upload"
+        print('url', upload_url)
+        with open(f'{IMAGE_FOLDER}cat1noemi.png', "rb") as image_file:
+            test_file = {'file': ('testnamenew', image_file.read(), 'image/png')}
+       # test_file = {'file': ('testnamenew', open(f'{IMAGE_FOLDER}cat1noemi.png', "rb"), 'image/png')}
+        response = self.rest_client.request("post", upload_url, files=test_file)
         LOGGER.info(response)
         if response["status_code"] == 201:
             self.image_id = response["body"]["id"]
@@ -47,8 +52,8 @@ class TestImages:
         Test get all images endpoint
         """
         LOGGER.info("Test get all images")
-        URL_CAT_API_IMAGES = f"{URL_CATAPI}/images/"
-        response = self.rest_client.request("get", URL_CAT_API_IMAGES)
+
+        response = self.rest_client.request("get", self.URL_CAT_API_IMAGES)
         self.validate.validate_response(response, "images", "get_all_images")
 
 

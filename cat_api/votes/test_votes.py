@@ -1,17 +1,21 @@
+"""Class providing vote API test """
+import json
+import logging
 import pytest
 
 from entities.image import Image
 from utils.logger import get_logger
-import logging
+
 
 from config.config import URL_CATAPI
 from helpers.rest_client import RestClient
 from helpers.validate_response import ValidateResponse
 LOGGER = get_logger(__name__, logging.DEBUG)
-import json
+
 
 
 class TestVotes:
+    """ test vote class"""
     @classmethod
     def setup_class(cls):
         """
@@ -29,8 +33,10 @@ class TestVotes:
         cls.vote_list = []
         cls.URL_CAT_API_VOTES = f"{URL_CATAPI}/votes"
         cls.validate = ValidateResponse()
+        cls.rest_post_client = RestClient()
+        cls.rest_post_client.session.headers.update(cls.header_post)
 
-    def test_post_a_vote(self, log_test_names):
+    def test_post_a_vote(self, _log_test_names):
         """
         Test create vote
         """
@@ -40,8 +46,7 @@ class TestVotes:
             "value": 1
         }
 
-        self.rest_post_client = RestClient()
-        self.rest_post_client.session.headers.update(self.header_post)
+
         response = self.rest_post_client.request("post", self.URL_CAT_API_VOTES, data=json.dumps(body_vote))
         if response["status_code"] == 201:
             self.vote_list.append(response["body"]["id"])
@@ -49,7 +54,7 @@ class TestVotes:
 
 
 
-    def test_post_a_down_vote(self, log_test_names):
+    def test_post_a_down_vote(self, _log_test_names):
         """
         Test create DOWN vote
         """
@@ -59,24 +64,23 @@ class TestVotes:
             "value": -1
         }
 
-        self.rest_post_client = RestClient()
-        self.rest_post_client.session.headers.update(self.header_post)
+
         response = self.rest_post_client.request("post", self.URL_CAT_API_VOTES, data=json.dumps(body_vote))
         if response["status_code"] == 201:
             self.vote_list.append(response["body"]["id"])
 
         assert response["status_code"] == 201
 
-    def test_get_all_vote(self, post_a_vote, log_test_names):
+    def test_get_all_vote(self, post_a_vote, _log_test_names):
         """
         Test get all votes endpoint
         """
-        LOGGER.info("Test get all votes")
+        LOGGER.info("Test get all votes %s",post_a_vote)
         response = self.rest_client.request("get", self.URL_CAT_API_VOTES)
 
         self.validate.validate_response(response, "votes", "get_all_votes")
 
-    def test_get_vote(self, create_a_vote, log_test_names):
+    def test_get_vote(self, create_a_vote, _log_test_names):
         """
         Test get vote
         """
@@ -87,7 +91,7 @@ class TestVotes:
         self.vote_list.append(create_a_vote)
         assert response["status_code"] == 200
 
-    def test_delete_vote(self, create_a_vote, log_test_names):
+    def test_delete_vote(self, create_a_vote, _log_test_names):
         """
             delete vote
         :param create_a_vote:
@@ -112,8 +116,7 @@ class TestVotes:
             "value": -1
         }
 
-        self.rest_post_client = RestClient()
-        self.rest_post_client.session.headers.update(self.header_post)
+
         response = self.rest_post_client.request("post", self.URL_CAT_API_VOTES, data=json.dumps(body_vote))
         self.validate.validate_response(response, "votes", "image_id_is_required")
 
@@ -127,8 +130,7 @@ class TestVotes:
             "image_id": "F8lwUshaY",
         }
 
-        self.rest_post_client = RestClient()
-        self.rest_post_client.session.headers.update(self.header_post)
+
         response = self.rest_post_client.request("post", self.URL_CAT_API_VOTES, data=json.dumps(body_vote))
         self.validate.validate_response(response, "votes", "value_is_required")
 
@@ -142,5 +144,4 @@ class TestVotes:
         for vote_id in cls.vote_list:
             url_delete_vote = f"{cls.URL_CAT_API_VOTES}/{vote_id}"
             LOGGER.debug(url_delete_vote)
-            response = cls.rest_client.request("delete", url_delete_vote)
-
+            cls.rest_client.request("delete", url_delete_vote)

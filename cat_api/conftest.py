@@ -1,21 +1,22 @@
+"""Module providing fixture methods."""
 import logging
-
 import pytest
 
-from config.config import URL_CATAPI
 from entities.favourite import Favourite
-
 from entities.image import Image
 from entities.vote import Vote
-from helpers.rest_client import RestClient
+
 from utils.logger import get_logger
-import json
 
 LOGGER = get_logger(__name__, logging.DEBUG)
 
 
-@pytest.fixture()
-def create_image():
+@pytest.fixture(name="create_image")
+def create_image_fixture():
+    """
+    create a image
+    :return:
+    """
     image_id = None
 
     LOGGER.info("Fixture UPLOAD images")
@@ -28,14 +29,23 @@ def create_image():
     return image_id
 
 
-@pytest.fixture()
-def get_image_id_to_vote():
+@pytest.fixture(name="get_image_id_to_vote")
+def get_image_id_to_vote_fixture():
+    """
+    Get a image id
+    :return:
+    """
     image = Image()
     return image.get_first_image_id()
 
 
-@pytest.fixture()
-def post_a_vote(get_image_id_to_vote):
+@pytest.fixture(name="post_a_vote")
+def post_a_vote_fixture(get_image_id_to_vote):
+    """
+    Create a vote
+    :param get_image_id_to_vote:
+    :return:
+    """
     vote_id = None
 
     vote = Vote()
@@ -50,12 +60,22 @@ def post_a_vote(get_image_id_to_vote):
 
 
 def delete_vote(vote_id):
+    """
+    delete vote by id
+    :param vote_id:
+    :return:
+    """
     vote = Vote()
     vote.delete_vote(vote_id)
 
 
-@pytest.fixture()
+@pytest.fixture(name="_log_test_names")
 def log_test_names(request):
+    """
+    print name function
+    :param request:
+    :return:
+    """
     repeated = "=" * 10
     LOGGER.info("%s TEST %s STARTED", repeated, request.node.name)
 
@@ -65,10 +85,15 @@ def log_test_names(request):
     request.addfinalizer(fin)
 
 
-@pytest.fixture()
-def create_a_vote(get_image_id_to_vote):
+@pytest.fixture(name="create_a_vote")
+def create_a_vote_fixture(get_image_id_to_vote):
+    """
+    create a vote
+    :param get_image_id_to_vote:
+    :return:
+    """
     vote_id = None
-    LOGGER.info("%s CREATE  VOTE",get_image_id_to_vote)
+    LOGGER.info("%s CREATE  VOTE", get_image_id_to_vote)
     vote = Vote()
     response = vote.create_vote(get_image_id_to_vote)
     if response["status_code"] == 201:
@@ -76,8 +101,13 @@ def create_a_vote(get_image_id_to_vote):
     return vote_id
 
 
-@pytest.fixture()
-def create_a_favourite(get_image_id_to_vote):
+@pytest.fixture(name="create_a_favourite")
+def create_a_favourite_fixture(get_image_id_to_vote):
+    """
+    create a favourite
+    :param get_image_id_to_vote:
+    :return:
+    """
     favourite_id = None
 
     favourite = Favourite()
