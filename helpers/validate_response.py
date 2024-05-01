@@ -63,6 +63,7 @@ class ValidateResponse:
         except IOError as err:
             print(f"Error: {err}")
         LOGGER.debug("Content of json file: %s", data)
+        LOGGER.info(" READ input Content of json file: %s", data)
         json_file.close()
 
         return data
