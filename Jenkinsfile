@@ -4,10 +4,8 @@ pipeline {
     stages {
         stage('Run Python Scripts') {
             steps {
-                withPythonEnv('python3') {
                     bat 'pip install -r requirements.txt'
                     bat 'python -m behave'
-                }
             }
         }
         stage('reports') {
