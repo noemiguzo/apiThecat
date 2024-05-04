@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('python version') {
             steps {
-              echo 'python3 --version'
+              bat 'python3 --version'
             }
         }
         stage('Run Python Scripts') {
             steps {
                 withPythonEnv('python3') {
-                    echo 'pip install -r requirements.txt'
-                    echo 'python3 -m behave'
+                    bat 'pip install -r requirements.txt'
+                    bat 'python3 -m behave'
                 }
             }
         }
