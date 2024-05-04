@@ -1,7 +1,7 @@
 """Class providing rest client support"""
 import json
 import logging
-
+import time
 import requests
 
 from config.config import HEADERS_TODO
@@ -68,4 +68,5 @@ class RestClient:
             "delete": session.delete,
             "put": session.put
         }
+        time.sleep(10)
         return methods.get(method_name)
