@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('python version') {
             steps {
-              bat 'python --version'
+              bat 'python -V'
             }
         }
         stage('Run Python Scripts') {
