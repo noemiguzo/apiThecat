@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('python version') {
-            steps {
-              bat 'python -V'
-            }
-        }
         stage('Run Python Scripts') {
             steps {
                 withPythonEnv('python3') {
