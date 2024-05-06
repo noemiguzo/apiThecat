@@ -8,6 +8,11 @@ pipeline {
                     bat 'python -m behave'
             }
         }
+        stage('Run Pylint') {
+            steps {
+                    bat 'pylint  cat_api/ --rcfile=.pylintrc'
+            }
+        }
         stage('reports') {
             steps {
                 script {

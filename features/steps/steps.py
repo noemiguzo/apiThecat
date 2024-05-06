@@ -11,9 +11,11 @@ from behave import when, then
 
 from entities.favourite import Favourite
 from entities.vote import Vote
+from type_definitions import *
 from utils.logger import get_logger
 
 from entities.image import Image
+
 LOGGER = get_logger(__name__, logging.DEBUG)
 
 @when(u'I call to "{endpoint}" endpoint using "GET" option and with parameters')
@@ -51,18 +53,18 @@ def step_call_post_endpoint(context, endpoint):
 
 
 
-    LOGGER.debug('STEP: %s ep',endpoint)
+    LOGGER.debug('STEP::: %s ep',endpoint)
     if endpoint == "images":
-        LOGGER.debug('STEP if image: %s',endpoint)
-        image_post=Image()
+        LOGGER.debug('STEP if image: %s', endpoint)
+        image_post = Image()
         response = image_post.create_image()
     elif endpoint == "votes":
         LOGGER.debug('STEP if vote: %s',endpoint)
-        vote_post=Vote()
-        response = vote_post.create_vote(context.image_id)
+        vote_post = Vote()
+        response = vote_post.create_vote(image_id=context.image_id)[0]
     elif endpoint == "favourites":
         LOGGER.debug('STEP if favourites: %s',endpoint)
-        Favourite_post=Favourite()
+        Favourite_post = Favourite()
         response = Favourite_post.create_favourite(context.image_id)
 
     # add to list of resources the resource created (id)
@@ -133,7 +135,7 @@ def get_url_by_feature(context, endpoint, resource_id=False):
     elif endpoint == "votes":
         if resource_id:
             if hasattr(context, "vote_id"):
-                url = context.url_cat_votes + "/" + context.vote_id
+                url = context.url_cat_votes + "/" + str(context.vote_id)
         else:
             url = context.url_cat_votes
     elif endpoint == "favourites":
@@ -161,3 +163,23 @@ def update_json_param(context, json_data):
     LOGGER.debug("New JSON data: %s", json_data)
 
     return json_data
+
+@when(u'I create a vote "{vote_sub:Vote}" in CAT API')
+def step_impl(context, vote_sub):
+    LOGGER.debug('STEP: Given I create a task "Task created using data type" in CAT API')
+
+    if context.table:
+        for row in context.table:
+            LOGGER.debug(row)
+            context.vote = Vote( sub_id=row['sub_id'], value=row['value'])
+            LOGGER.debug("context.image_id %s: ", context.image_id)
+            vote_responses = context.vote.create_vote(image_id=context.image_id)
+            context.response = vote_responses[0]
+            for response in vote_responses:
+                task_id = response["body"]["id"]
+                context.resource_list["votes"].append(task_id)
+    else:
+        context.vote = vote_sub
+        context.response = context.vote.create_vote(image_id=context.image_id)[0]
+        vote_id = context.response["body"]["id"]
+        context.resource_list["votes"].append(vote_id)

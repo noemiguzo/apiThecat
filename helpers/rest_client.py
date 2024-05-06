@@ -68,5 +68,5 @@ class RestClient:
             "delete": session.delete,
             "put": session.put
         }
-        time.sleep(10)
+        time.sleep(3)
         return methods.get(method_name)

@@ -17,8 +17,9 @@ class ValidateResponse:
         """
 
         expected_response = self.read_input_data_json(f"{abs_path}/apiThecat/input_data/{endpoint}/{file_name}.json")
+        print('expected_response ...')
         print(expected_response)
-        print('actual_response')
+        print('actual_response ...')
         print(actual_response)
         # compare results
         # validate status_code
@@ -82,7 +83,7 @@ class ValidateResponse:
                 LOGGER.debug("Key '%s' found in json2", key)
             else:
                 LOGGER.debug("Key '%s' not found in json2", key)
-                return  False
+                return False
         return True
 
 

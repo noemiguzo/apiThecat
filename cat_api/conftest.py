@@ -49,7 +49,7 @@ def post_a_vote_fixture(get_image_id_to_vote):
     vote_id = None
 
     vote = Vote()
-    response = vote.create_vote(get_image_id_to_vote)
+    response = vote.create_vote(image_id=get_image_id_to_vote)[0]
     if response["status_code"] == 201:
         vote_id = response["body"]["id"]
 
@@ -95,7 +95,7 @@ def create_a_vote_fixture(get_image_id_to_vote):
     vote_id = None
     LOGGER.info("%s CREATE  VOTE", get_image_id_to_vote)
     vote = Vote()
-    response = vote.create_vote(get_image_id_to_vote)
+    response = vote.create_vote(image_id=get_image_id_to_vote)[0]
     if response["status_code"] == 201:
         vote_id = response["body"]["id"]
     return vote_id
