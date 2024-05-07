@@ -13,7 +13,7 @@ Feature: Images
   @create
   @allure.label.owner:Noemi_Guzman
   Scenario: Verify that create image endpoint return a image created
-    As I user I want to create a project in The Cat API
+    As I user I want to create a image in The Cat API
 
     When I call to "images" endpoint using "POST" option and with parameters
     Then I receive the response and validate with "upload_image" file

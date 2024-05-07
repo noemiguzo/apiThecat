@@ -14,8 +14,8 @@ Feature: Favourites
 
   @favourite_id  @create
   @allure.label.owner:Noemi_Guzman
-  Scenario: Verify that create vote endpoint return a vote created
-    As I user I want to create a project in CAT API
+  Scenario: Verify that create vote endpoint return a favourite created
+    As I user I want to create a favourite in CAT API
 
     When I call to "favourites" endpoint using "POST" option and with parameters
     Then I receive the response and validate with "create_favourite" file
@@ -23,7 +23,7 @@ Feature: Favourites
 
   @favourite_id  @delete
   @allure.label.owner:Noemi_Guzman
-  Scenario: Verify that delete image endpoint deletes the project
+  Scenario: Verify that delete image endpoint deletes the favourites
     As I user I want to delete a image in CAT API
 
     When I call to "favourites" endpoint using "DELETE" option and with parameters

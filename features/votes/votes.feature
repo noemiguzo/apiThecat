@@ -20,7 +20,7 @@ Feature: Votes
 
   @vote_id  @delete
   @allure.label.owner:Noemi_Guzman
-  Scenario: Verify that delete image endpoint deletes the project
+  Scenario: Verify that delete image endpoint deletes the Vote
     As I user I want to delete a image in The Cat API
 
     When I call to "votes" endpoint using "DELETE" option and with parameters
@@ -35,7 +35,7 @@ Feature: Votes
 
   @image_id  @parse
   @allure.label.owner:Noemi_Guzman
-  Scenario: Verify I can create multiple tasks
+  Scenario: Verify I can create multiple Votes
     When I create a vote "<sub_id><value>" in CAT API
     | sub_id    |  value |
     | homework  | 2 |
