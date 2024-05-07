@@ -12,7 +12,7 @@ Feature: Images
 
   @create
   @allure.label.owner:Noemi_Guzman
-  Scenario: Verify that create project endpoint return a project created
+  Scenario: Verify that create image endpoint return a image created
     As I user I want to create a project in The Cat API
 
     When I call to "images" endpoint using "POST" option and with parameters
@@ -21,7 +21,7 @@ Feature: Images
 
   @image_id  @acceptance
   @allure.label.owner:Noemi_Guzman
-  Scenario: Verify that delete image endpoint deletes the project
+  Scenario: Verify that delete image endpoint deletes the image
     As I user I want to delete a image in The Cat API
 
     When I call to "images" endpoint using "DELETE" option and with parameters
