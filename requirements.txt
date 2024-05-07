@@ -9,6 +9,6 @@ passlib~=1.7.4
 pydantic~=2.6.4
 pymsteams~=0.2.2
 pytest==8.0.2
-pytest-retry
+pytest-retry==1.6.2
 python-dotenv==1.0.1
 requests==2.31.0
