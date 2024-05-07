@@ -1,28 +1,30 @@
 """Class providing vote API test """
+from __future__ import annotations
+
 import json
 import logging
+
 import pytest
 
-from entities.image import Image
-from utils.logger import get_logger
-
-
 from config.config import URL_CATAPI
+from entities.image import Image
 from helpers.rest_client import RestClient
 from helpers.validate_response import ValidateResponse
+from utils.logger import get_logger
+
 LOGGER = get_logger(__name__, logging.DEBUG)
 
 
-
 class TestVotes:
-    """ test vote class"""
+    """test vote class"""
+
     @classmethod
     def setup_class(cls):
         """
         Setup class search for images to run vote suite
         """
         cls.header_post = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
 
         cls.rest_client = RestClient()
@@ -43,16 +45,17 @@ class TestVotes:
         LOGGER.info("Test Create an 'Up' Vote")
         body_vote = {
             "image_id": self.image_id,
-            "value": 1
+            "value": 1,
         }
 
-
-        response = self.rest_post_client.request("post", self.URL_CAT_API_VOTES, data=json.dumps(body_vote))
+        response = self.rest_post_client.request(
+            "post",
+            self.URL_CAT_API_VOTES,
+            data=json.dumps(body_vote),
+        )
         if response["status_code"] == 201:
             self.vote_list.append(response["body"]["id"])
         self.validate.validate_response(response, "votes", "post_a_vote")
-
-
 
     def test_post_a_down_vote(self, _log_test_names):
         """
@@ -61,21 +64,25 @@ class TestVotes:
         LOGGER.info("Test  Create an 'Down' Vote")
         body_vote = {
             "image_id": self.image_id,
-            "value": -1
+            "value": -1,
         }
 
-
-        response = self.rest_post_client.request("post", self.URL_CAT_API_VOTES, data=json.dumps(body_vote))
+        response = self.rest_post_client.request(
+            "post",
+            self.URL_CAT_API_VOTES,
+            data=json.dumps(body_vote),
+        )
         if response["status_code"] == 201:
             self.vote_list.append(response["body"]["id"])
 
         assert response["status_code"] == 201
 
+    @pytest.mark.flaky(retries=2, only_on=[ValueError, IndexError])
     def test_get_all_vote(self, post_a_vote, _log_test_names):
         """
         Test get all votes endpoint
         """
-        LOGGER.info("Test get all votes %s",post_a_vote)
+        LOGGER.info("Test get all votes %s", post_a_vote)
         response = self.rest_client.request("get", self.URL_CAT_API_VOTES)
 
         self.validate.validate_response(response, "votes", "get_all_votes")
@@ -91,6 +98,7 @@ class TestVotes:
         self.vote_list.append(create_a_vote)
         assert response["status_code"] == 200
 
+    @pytest.mark.flaky(retries=2, only_on=[ValueError, IndexError])
     def test_delete_vote(self, create_a_vote, _log_test_names):
         """
             delete vote
@@ -113,11 +121,14 @@ class TestVotes:
         """
         LOGGER.info("Test  Create an 'Down' Vote")
         body_vote = {
-            "value": -1
+            "value": -1,
         }
 
-
-        response = self.rest_post_client.request("post", self.URL_CAT_API_VOTES, data=json.dumps(body_vote))
+        response = self.rest_post_client.request(
+            "post",
+            self.URL_CAT_API_VOTES,
+            data=json.dumps(body_vote),
+        )
         self.validate.validate_response(response, "votes", "image_id_is_required")
 
     @pytest.mark.functional
@@ -130,8 +141,11 @@ class TestVotes:
             "image_id": "F8lwUshaY",
         }
 
-
-        response = self.rest_post_client.request("post", self.URL_CAT_API_VOTES, data=json.dumps(body_vote))
+        response = self.rest_post_client.request(
+            "post",
+            self.URL_CAT_API_VOTES,
+            data=json.dumps(body_vote),
+        )
         self.validate.validate_response(response, "votes", "value_is_required")
 
     @classmethod

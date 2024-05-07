@@ -1,19 +1,23 @@
 """Class providing image API test """
+from __future__ import annotations
+
 import logging
+
 import pytest
 
+from config.config import IMAGE_FOLDER
+from config.config import URL_CATAPI
 from entities.image import Image
-from utils.logger import get_logger
-
-from config.config import URL_CATAPI, IMAGE_FOLDER
 from helpers.rest_client import RestClient
 from helpers.validate_response import ValidateResponse
+from utils.logger import get_logger
 
 LOGGER = get_logger(__name__, logging.DEBUG)
 
 
 class TestImages:
-    """ test image class"""
+    """test image class"""
+
     @classmethod
     def setup_class(cls):
         """
@@ -34,10 +38,10 @@ class TestImages:
         """
         LOGGER.info("Test upload images")
         upload_url = f"{self.URL_CAT_API_IMAGES}upload"
-        print('url', upload_url)
-        with open(f'{IMAGE_FOLDER}cat1noemi.png', "rb") as image_file:
-            test_file = {'file': ('testnamenew', image_file.read(), 'image/png')}
-       # test_file = {'file': ('testnamenew', open(f'{IMAGE_FOLDER}cat1noemi.png', "rb"), 'image/png')}
+        print("url", upload_url)
+        with open(f"{IMAGE_FOLDER}cat1noemi.png", "rb") as image_file:
+            test_file = {"file": ("testnamenew", image_file.read(), "image/png")}
+        # test_file = {'file': ('testnamenew', open(f'{IMAGE_FOLDER}cat1noemi.png', "rb"), 'image/png')}
         response = self.rest_client.request("post", upload_url, files=test_file)
         LOGGER.info(response)
         if response["status_code"] == 201:
@@ -56,14 +60,12 @@ class TestImages:
         response = self.rest_client.request("get", self.URL_CAT_API_IMAGES)
         self.validate.validate_response(response, "images", "get_all_images")
 
-
     @pytest.mark.acceptance
     def test_get_image(self):
         """
         Test get image endpoint
         """
         LOGGER.info("Test get image")
-
 
         url_get_image = f"{self.URL_CAT_API_IMAGES}{self.image_id}"
         response = self.rest_client.request("get", url_get_image)

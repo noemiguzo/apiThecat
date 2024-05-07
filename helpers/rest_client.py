@@ -1,8 +1,12 @@
 """Class providing rest client support"""
+from __future__ import annotations
+
 import json
 import logging
 import time
+
 import requests
+from requests.adapters import HTTPAdapter
 
 from config.config import HEADERS_TODO
 from utils.logger import get_logger
@@ -12,11 +16,12 @@ LOGGER = get_logger(__name__, logging.DEBUG)
 
 class RestClient:
     """Class rest client methods."""
+
     def __init__(self):
         self.session = requests.Session()
         self.session.headers.update(HEADERS_TODO)
 
-    def request(self, method_name, url,  **kwargs):
+    def request(self, method_name, url, **kwargs):
         """
             method to do a request call
         :param method_name:
@@ -29,7 +34,12 @@ class RestClient:
         """
         response_dict = {}
         try:
-            response = self.select_method(method_name, self.session)(url=url,  **kwargs)
+            # retry
+            self.session.mount(url, HTTPAdapter(max_retries=2))
+            response = self.select_method(method_name, self.session)(
+                url=url,
+                **kwargs,
+            )  # timeout=(10, 2),
             LOGGER.debug("[Response] to request text: %s", response.text)
             LOGGER.debug("[Response] Status Code: %s", response.status_code)
             response.raise_for_status()
@@ -66,7 +76,7 @@ class RestClient:
             "get": session.get,
             "post": session.post,
             "delete": session.delete,
-            "put": session.put
+            "put": session.put,
         }
         time.sleep(3)
         return methods.get(method_name)

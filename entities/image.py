@@ -1,14 +1,17 @@
+from __future__ import annotations
+
 import logging
 
-from config.config import URL_CATAPI, IMAGE_FOLDER
+from config.config import IMAGE_FOLDER
+from config.config import URL_CATAPI
 from helpers.rest_client import RestClient
 from utils.logger import get_logger
 
 LOGGER = get_logger(__name__, logging.DEBUG)
-ENTITY = 'images'
+ENTITY = "images"
+
 
 class Image:
-
     def __init__(self, rest_client=None):
         self.url_cat_api_images = f"{URL_CATAPI}/{ENTITY}"
         self.rest_client = rest_client
@@ -18,9 +21,19 @@ class Image:
     def create_image(self):
         URL_CAT_API_UPLOAD = f"{self.url_cat_api_images}/upload"
 
-        media_file = {'file': ('namenewcat1', open(f'{IMAGE_FOLDER}cat1noemi.png', "rb"), 'image/png')}
+        media_file = {
+            "file": (
+                "namenewcat1",
+                open(f"{IMAGE_FOLDER}cat1noemi.png", "rb"),
+                "image/png",
+            ),
+        }
 
-        response = self.rest_client.request("post", URL_CAT_API_UPLOAD, files=media_file)
+        response = self.rest_client.request(
+            "post",
+            URL_CAT_API_UPLOAD,
+            files=media_file,
+        )
 
         return response
 

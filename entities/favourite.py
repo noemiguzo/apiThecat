@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 import logging
 
@@ -6,10 +8,10 @@ from helpers.rest_client import RestClient
 from utils.logger import get_logger
 
 LOGGER = get_logger(__name__, logging.DEBUG)
-ENTITY = 'favourites'
+ENTITY = "favourites"
+
 
 class Favourite:
-    
     def __init__(self, rest_client=None):
         self.url_cat_api_favourites = f"{URL_CATAPI}/{ENTITY}"
         self.rest_client = rest_client
@@ -17,17 +19,18 @@ class Favourite:
             self.rest_client = RestClient()
 
     def create_favourite(self, image_id=None):
-
         body_favourite = {
-            "image_id": image_id
+            "image_id": image_id,
         }
         header_post = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
         self.rest_client.session.headers.update(header_post)
-        response = self.rest_client.request("post",
-                                            self.url_cat_api_favourites,
-                                            data=json.dumps(body_favourite))
+        response = self.rest_client.request(
+            "post",
+            self.url_cat_api_favourites,
+            data=json.dumps(body_favourite),
+        )
 
         return response
 

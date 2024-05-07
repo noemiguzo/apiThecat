@@ -1,16 +1,19 @@
+from __future__ import annotations
+
 import json
 import logging
 
-from config.config import URL_CATAPI, abs_path
+from config.config import abs_path
+from config.config import URL_CATAPI
 from helpers.rest_client import RestClient
-from utils.logger import get_logger
 from helpers.validate_response import ValidateResponse
+from utils.logger import get_logger
 
 LOGGER = get_logger(__name__, logging.DEBUG)
-ENTITY = 'votes'
+ENTITY = "votes"
+
 
 class Vote:
-
     def __init__(self, rest_client=None, sub_id=None, value=1):
         self.url_cat_api_votes = f"{URL_CATAPI}/{ENTITY}"
         self.rest_client = rest_client
@@ -26,10 +29,10 @@ class Vote:
         body_vote = {
             "image_id": image_id,
             "sub_id": self.sub_id or "fixture-1",
-            "value": self.value or 1
+            "value": self.value or 1,
         }
         header_post = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
         if self.rest_client is None:
             self.rest_client = RestClient()
@@ -42,12 +45,20 @@ class Vote:
             for index in range(0, number_votes):
                 body_vote = data_vote[index]
                 body_vote["image_id"] = image_id
-                LOGGER.debug("[vote class] ------file-------  body_vote %s", body_vote)
-                response = self.rest_client.request("post", self.url_cat_api_votes, data=json.dumps(body_vote))
+                LOGGER.debug("[vote class] -----by - file-------  body_vote %s", body_vote)
+                response = self.rest_client.request(
+                    "post",
+                    self.url_cat_api_votes,
+                    data=json.dumps(body_vote),
+                )
                 response_list.append(response)
         else:
-            LOGGER.debug("[vote class] -------ELSE------  body_vote %s", body_vote)
-            response = self.rest_client.request("post", self.url_cat_api_votes, data=json.dumps(body_vote))
+            LOGGER.debug("[vote class] -------  body_vote %s", body_vote)
+            response = self.rest_client.request(
+                "post",
+                self.url_cat_api_votes,
+                data=json.dumps(body_vote),
+            )
         response_list.append(response)
         return response_list
 
@@ -58,5 +69,3 @@ class Vote:
 
         if response["status_code"] == 204:
             LOGGER.info("Vote Id deleted : %s", vote_id)
-
-

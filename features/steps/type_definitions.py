@@ -1,5 +1,7 @@
-from behave import register_type
+from __future__ import annotations
+
 import parse
+from behave import register_type
 
 from entities.image import Image
 from entities.vote import Vote

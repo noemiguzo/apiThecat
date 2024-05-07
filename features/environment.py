@@ -4,20 +4,19 @@
 environment.py
     file contains all environment functions/fixtures to be used by features
 """
+from __future__ import annotations
+
 import logging
 
 from config.config import URL_CATAPI
+from entities.favourite import Favourite
 from entities.image import Image
 from entities.vote import Vote
-from entities.favourite import  Favourite
 from helpers.rest_client import RestClient
 from helpers.validate_response import ValidateResponse
 from utils.logger import get_logger
 
 LOGGER = get_logger(__name__, logging.DEBUG)
-
-
-
 
 
 def before_all(context):
@@ -34,7 +33,7 @@ def before_all(context):
     context.resource_list = {
         "images": [],
         "votes": [],
-        "favourites": []
+        "favourites": [],
     }
     context.validate = ValidateResponse()
     context.image = Image()
@@ -51,31 +50,30 @@ def before_scenario(context, scenario):
     context.resource_list = {
         "votes": [],
         "favourites": [],
-        "images": []
+        "images": [],
     }
     LOGGER.info("Before Scenario::::")
     LOGGER.info("Test '%s' STARTED", scenario.name)
     LOGGER.info("Tags '%s' ", scenario.tags)
-    if "_id" in ''.join(scenario.tags):
+    if "_id" in "".join(scenario.tags):
         new_image = context.image.create_image()
         context.image_id = new_image["body"]["id"]
         context.resource_list["images"].append(context.image_id)
         LOGGER.warning(context.resource_list)
 
     if "vote_id" in scenario.tags:
-
         new_vote = context.vote.create_vote(image_id=context.image_id)[0]
         context.vote_id = new_vote["body"]["id"]
         context.resource_list["votes"].append(context.vote_id)
         LOGGER.warning(context.resource_list)
 
     if "favourite_id" in scenario.tags:
-
         new_image = context.favourite.create_favourite(context.image_id)
         context.favourite_id = new_image["body"]["id"]
         context.resource_list["favourites"].append(context.favourite_id)
 
     LOGGER.info(context.resource_list)
+
 
 def after_scenario(context, scenario):
     """
@@ -95,4 +93,3 @@ def after_scenario(context, scenario):
             response = context.rest_client.request("delete", url_delete)
             if response["status_code"] == 204:
                 LOGGER.info("%s Id deleted : %s", resource, resource_id)
-

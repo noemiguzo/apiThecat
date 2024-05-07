@@ -1,25 +1,29 @@
 """Class providing favourites test """
+from __future__ import annotations
+
 import json
 import logging
+
 import pytest
 
-from utils.logger import get_logger
 from config.config import URL_CATAPI
 from helpers.rest_client import RestClient
 from helpers.validate_response import ValidateResponse
+from utils.logger import get_logger
 
 LOGGER = get_logger(__name__, logging.DEBUG)
 
 
 class TestFavourites:
-    """ test favourites class"""
+    """test favourites class"""
+
     @classmethod
     def setup_class(cls):
         """
         Setup class for favourite
         """
         cls.header_post = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
         cls.rest_client = RestClient()
         cls.URL_CAT_API_IMAGES = f"{URL_CATAPI}/images/search?"
@@ -39,11 +43,14 @@ class TestFavourites:
 
         body_favourite = {
             "image_id": self.image_id,
-
         }
         rest_post_client = RestClient()
         rest_post_client.session.headers.update(self.header_post)
-        response = rest_post_client.request("post", self.URL_CAT_API_FAVOURITES, data=json.dumps(body_favourite))
+        response = rest_post_client.request(
+            "post",
+            self.URL_CAT_API_FAVOURITES,
+            data=json.dumps(body_favourite),
+        )
 
         if response["status_code"] == 200:
             self.favourite_list.append(response["body"]["id"])
@@ -70,7 +77,6 @@ class TestFavourites:
         response = self.rest_client.request("get", self.URL_CAT_API_FAVOURITES)
         self.validate.validate_response(response, "favourites", "get_all_favourites")
 
-
     @pytest.mark.acceptance
     def test_get_favourite(self, create_a_favourite, _log_test_names):
         """
@@ -82,20 +88,21 @@ class TestFavourites:
         self.favourite_list.append(create_a_favourite)
         assert response["status_code"] == 200
 
-
     @pytest.mark.functional
     def test_image_id_is_required_create_favourite(self):
         """
         Test create favourite functional test
         """
         LOGGER.info("Test  Create an 'Down' Vote")
-        body_favourite = {
-
-        }
+        body_favourite = {}
 
         rest_post_client = RestClient()
         rest_post_client.session.headers.update(self.header_post)
-        response = rest_post_client.request("post", self.URL_CAT_API_FAVOURITES, data=json.dumps(body_favourite))
+        response = rest_post_client.request(
+            "post",
+            self.URL_CAT_API_FAVOURITES,
+            data=json.dumps(body_favourite),
+        )
         self.validate.validate_response(response, "favourites", "image_id_is_required")
 
     @classmethod

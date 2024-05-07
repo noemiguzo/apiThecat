@@ -43,9 +43,9 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl https://api.thecatapi.com/v1/image
 > user-agent: curl/7.68.0
 > accept: */*
 > authority: api.thecatapi.com
-> 
+>
 * Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
-< HTTP/2 200 
+< HTTP/2 200
 < x-dns-prefetch-control: off
 < x-frame-options: SAMEORIGIN
 < strict-transport-security: max-age=15552000; includeSubDomains
@@ -63,13 +63,13 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl https://api.thecatapi.com/v1/image
 < date: Wed, 06 Mar 2024 01:07:02 GMT
 < server: Google Frontend
 < content-length: 89
-< 
+<
 * Connection #0 to host api.thecatapi.com left intact
-[{"id":"4id","url":"https://cdn2.thecatapi.com/images/4id.gif","width":241,"height":300}]noemi@NGUZMANO-DH01:~/autosetup/ts-test$ 
+[{"id":"4id","url":"https://cdn2.thecatapi.com/images/4id.gif","width":241,"height":300}]noemi@NGUZMANO-DH01:~/autosetup/ts-test$
 
 ## GET favoutires
 
- - curl --location 'https://api.thecatapi.com/v1/favourites' --header 'Content-Type: application/json' --header 'x-api-key: live_q4NhK64bHnooCcxXqBG2mhoRRThymieDah9FNqONycSezH9SC7HvADbBa1CxqTOM' 
+ - curl --location 'https://api.thecatapi.com/v1/favourites' --header 'Content-Type: application/json' --header 'x-api-key: live_q4NhK64bHnooCcxXqBG2mhoRRThymieDah9FNqONycSezH9SC7HvADbBa1CxqTOM'
 
 noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl --location 'https://api.thecatapi.com/v1/favourites' --header 'Content-Type: application/json' --header 'x-api-key: live_q4NhK64bHnooCcxXqBG2mhoRRThymieDah9FNqONycSezH9SC7HvADbBa1CxqTOM' -v
 *   Trying 192.178.49.19:443...
@@ -107,9 +107,9 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl --location 'https://api.thecatapi.
 > accept: */*
 > content-type: application/json
 > x-api-key: live_q4NhK64bHnooCcxXqBG2mhoRRThymieDah9FNqONycSezH9SC7HvADbBa1CxqTOM
-> 
+>
 * Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
-< HTTP/2 200 
+< HTTP/2 200
 < x-dns-prefetch-control: off
 < x-frame-options: SAMEORIGIN
 < strict-transport-security: max-age=15552000; includeSubDomains
@@ -128,7 +128,7 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl --location 'https://api.thecatapi.
 < date: Wed, 06 Mar 2024 01:09:59 GMT
 < server: Google Frontend
 < content-length: 2
-< 
+<
 * Connection #0 to host api.thecatapi.com left intact
 []
 
@@ -173,10 +173,10 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl --location 'https://api.thecatapi.
 > content-type: application/json
 > x-api-key: live_q4NhK64bHnooCcxXqBG2mhoRRThymieDah9FNqONycSezH9SC7HvADbBa1CxqTOM
 > content-length: 42
-> 
+>
 * We are completely uploaded and fine
 * Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
-< HTTP/2 200 
+< HTTP/2 200
 < x-dns-prefetch-control: off
 < x-frame-options: SAMEORIGIN
 < strict-transport-security: max-age=15552000; includeSubDomains
@@ -195,7 +195,7 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl --location 'https://api.thecatapi.
 < date: Wed, 06 Mar 2024 01:11:00 GMT
 < server: Google Frontend
 < content-length: 36
-< 
+<
 * Connection #0 to host api.thecatapi.com left intact
 {"message":"SUCCESS","id":232447732}
 
@@ -239,9 +239,9 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl --location --request DELETE 'https
 > accept: */*
 > content-type: application/json
 > x-api-key: live_q4NhK64bHnooCcxXqBG2mhoRRThymieDah9FNqONycSezH9SC7HvADbBa1CxqTOM
-> 
+>
 * Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
-< HTTP/2 200 
+< HTTP/2 200
 < x-dns-prefetch-control: off
 < x-frame-options: SAMEORIGIN
 < strict-transport-security: max-age=15552000; includeSubDomains
@@ -260,7 +260,7 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl --location --request DELETE 'https
 < date: Wed, 06 Mar 2024 01:12:18 GMT
 < server: Google Frontend
 < content-length: 21
-< 
+<
 * Connection #0 to host api.thecatapi.com left intact
 {"message":"SUCCESS"}
 
@@ -307,10 +307,10 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl --location 'https://api.thecatapi.
 > content-type: application/json
 > x-api-key: live_q4NhK64bHnooCcxXqBG2mhoRRThymieDah9FNqONycSezH9SC7HvADbBa1CxqTOM
 > content-length: 49
-> 
+>
 * We are completely uploaded and fine
 * Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
-< HTTP/2 201 
+< HTTP/2 201
 < x-dns-prefetch-control: off
 < x-frame-options: SAMEORIGIN
 < strict-transport-security: max-age=15552000; includeSubDomains
@@ -329,7 +329,7 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl --location 'https://api.thecatapi.
 < date: Wed, 06 Mar 2024 01:20:29 GMT
 < server: Google Frontend
 < content-length: 99
-< 
+<
 * Connection #0 to host api.thecatapi.com left intact
 {"message":"SUCCESS","id":1165604,"image_id":"3pc","sub_id":"891234","value":1,"country_code":"US"}
 
@@ -374,10 +374,10 @@ noemi@NGUZMANO-DH01:~/autoPR/ts-test$ curl  'https://api.thecatapi.com/v1/votes'
 > content-type: application/json
 > x-api-key: live_q4NhK64bHnooCcxXqBG2mhoRRThymieDah9FNqONycSezH9SC7HvADbBa1CxqTOM
 > content-length: 50
-> 
+>
 * We are completely uploaded and fine
 * Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
-< HTTP/2 201 
+< HTTP/2 201
 < x-dns-prefetch-control: off
 < x-frame-options: SAMEORIGIN
 < strict-transport-security: max-age=15552000; includeSubDomains
@@ -396,14 +396,14 @@ noemi@NGUZMANO-DH01:~/autoPR/ts-test$ curl  'https://api.thecatapi.com/v1/votes'
 < date: Wed, 06 Mar 2024 13:07:09 GMT
 < server: Google Frontend
 < content-length: 100
-< 
+<
 * Connection #0 to host api.thecatapi.com left intact
 {"message":"SUCCESS","id":1165693,"image_id":"3pc","sub_id":"891234","value":-1,"country_code":"BO"}
 
 **Negative tests**
 ## 1. GET votes without API-key
 
-noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl  "https://api.thecatapi.com/v1/votes?limit=10&order=DESC" -v 
+noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl  "https://api.thecatapi.com/v1/votes?limit=10&order=DESC" -v
 *   Trying 192.178.48.243:443...
 * TCP_NODELAY set
 * Connected to api.thecatapi.com (192.178.48.243) port 443 (#0)
@@ -437,21 +437,21 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl  "https://api.thecatapi.com/v1/vot
 > Host: api.thecatapi.com
 > user-agent: curl/7.68.0
 > accept: */*
-> 
+>
 * Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
-< HTTP/2 401 
+< HTTP/2 401
 < content-type: text/plain; charset=utf-8
 < x-cloud-trace-context: f661203646aa796f298caafbed3031bf
 < date: Wed, 06 Mar 2024 01:15:08 GMT
 < server: Google Frontend
 < content-length: 78
-< 
+<
 * Connection #0 to host api.thecatapi.com left intact
 AUTHENTICATION_ERROR - you need to send your API Key as the 'x-api-key' header
 
 ## 2. GET image invalid image_id
 
-noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl https://api.thecatapi.com/v1/images/3pc_badid?api_key=$api_key -v  
+noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl https://api.thecatapi.com/v1/images/3pc_badid?api_key=$api_key -v
 *   Trying 192.178.48.243:443...
 * TCP_NODELAY set
 * Connected to api.thecatapi.com (192.178.48.243) port 443 (#0)
@@ -485,15 +485,15 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl https://api.thecatapi.com/v1/image
 > Host: api.thecatapi.com
 > user-agent: curl/7.68.0
 > accept: */*
-> 
+>
 * Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
-< HTTP/2 400 
+< HTTP/2 400
 < content-type: text/plain; charset=utf-8
 < x-cloud-trace-context: fecb815561652bd8bff9405e76581d45
 < date: Wed, 06 Mar 2024 01:17:53 GMT
 < server: Google Frontend
 < content-length: 60
-< 
+<
 * Connection #0 to host api.thecatapi.com left intact
 Couldn't find an image matching the passed 'id' of 3pc_badid
 
@@ -536,18 +536,18 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl --location 'https://api.thecatapi.
 > content-type: application/json
 > x-api-key: live_q4NhK64bHnooCcxXqBG2mhoRRThymieDah9FNqONycSezH9SC7HvADbBa1CxqTOM
 > content-length: 42
-> 
+>
 * We are completely uploaded and fine
 * Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
-< HTTP/2 400 
+< HTTP/2 400
 < content-type: text/plain; charset=utf-8
 < x-cloud-trace-context: 24579db8815d923cebfd2753526703a7
 < date: Wed, 06 Mar 2024 01:24:24 GMT
 < server: Google Frontend
 < content-length: 75
-< 
+<
 * Connection #0 to host api.thecatapi.com left intact
-DUPLICATE_FAVOURITE - favourites are unique for account + image_id + sub_idnoemi@NGUZMANO-DH01:~/autosetup/ts-test$ 
+DUPLICATE_FAVOURITE - favourites are unique for account + image_id + sub_idnoemi@NGUZMANO-DH01:~/autosetup/ts-test$
 
 ## 4. DELETE favourites bad id
 
@@ -587,15 +587,15 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl --location --request DELETE 'https
 > accept: */*
 > content-type: application/json
 > x-api-key: live_q4NhK64bHnooCcxXqBG2mhoRRThymieDah9FNqONycSezH9SC7HvADbBa1CxqTOM
-> 
+>
 * Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
-< HTTP/2 400 
+< HTTP/2 400
 < content-type: text/plain; charset=utf-8
 < x-cloud-trace-context: a7242a6463f3eebd71bcdfa837e2a5d6
 < date: Wed, 06 Mar 2024 01:26:57 GMT
 < server: Google Frontend
 < content-length: 15
-< 
+<
 * Connection #0 to host api.thecatapi.com left intact
 IVALID_ACCOUNT
 
@@ -638,16 +638,16 @@ noemi@NGUZMANO-DH01:~/autosetup/ts-test$ curl --location 'https://api.thecatapi.
 > content-type: application/json
 > x-api-key: live_q4NhK64bHnooCcxXqBG2mhoRRThymieDah9FNqONycSezH9SC7HvADbBa1CxqTOM
 > content-length: 25
-> 
+>
 * We are completely uploaded and fine
 * Connection state changed (MAX_CONCURRENT_STREAMS == 100)!
-< HTTP/2 400 
+< HTTP/2 400
 < content-type: text/plain; charset=utf-8
 < x-cloud-trace-context: 831340608e049ff207f11dad89d8abdb
 < date: Wed, 06 Mar 2024 01:29:20 GMT
 < server: Google Frontend
 < content-length: 22
-< 
+<
 * Connection #0 to host api.thecatapi.com left intact
 "image_id" is required
 
