@@ -20,7 +20,7 @@ Feature: Votes
 
   @vote_id  @delete
   @allure.label.owner:Noemi_Guzman
-  Scenario: Verify that delete image endpoint deletes the Vote
+  Scenario: Verify that delete vote endpoint deletes the Vote
     As I user I want to delete a image in The Cat API
 
     When I call to "votes" endpoint using "DELETE" option and with parameters
