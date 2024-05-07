@@ -15,7 +15,7 @@ from entities.favourite import Favourite
 from entities.image import Image
 from entities.vote import Vote
 from utils.logger import get_logger
-
+from type_definitions import *
 LOGGER = get_logger(__name__, logging.DEBUG)
 
 
